@@ -1,6 +1,10 @@
 hash-format = "sha256"
 
 [[files]]
+file = "README.md"
+hash = "2672df105384b56a96aa2b011438a274517356a5f8ea16d01e9760b33f92a4ce"
+
+[[files]]
 file = "icon.png"
 hash = "053ae2fac37041d0a18031332ffe95f3305990246bf8eecb7a4c33b106eaf0ed"
 preserve = true
@@ -188,11 +192,6 @@ metafile = true
 [[files]]
 file = "mods/voicechat-fabric-2-6-24-26-3.pw.toml"
 hash = "3ff66a332125b064af5eadcf678b4d70d85cac3d90be2725bdc1443d0faa73e9"
-metafile = true
-
-[[files]]
-file = "mods/voxy-0-2-19-beta.pw.toml"
-hash = "4e72b8d8d6ef967b554745acdefdee5a9d886345fc405af2801acec5c56f1950"
 metafile = true
 
 [[files]]
