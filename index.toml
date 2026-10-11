@@ -192,7 +192,7 @@ metafile = true
 
 [[files]]
 file = "mods/voxy-0-2-19-beta.pw.toml"
-hash = "1875b185b91ddf4034dbf21673e0eeb22fd8a79340b6305a1288d4a02324fcc9"
+hash = "4e72b8d8d6ef967b554745acdefdee5a9d886345fc405af2801acec5c56f1950"
 metafile = true
 
 [[files]]
@@ -226,7 +226,7 @@ metafile = true
 
 [[files]]
 file = "servers.dat"
-hash = "ea520d1e45c3c50d71de98f09a30a9c380f9c3d86d18d39d4679c6dbd7b684c0"
+hash = "bb2d1f0f852d9576948d792192b0f1b10db4c8d4b7b47b9318022ea5677aa9d2"
 preserve = true
 
 [[files]]
