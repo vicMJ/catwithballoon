@@ -1,0 +1,13 @@
+name = "Alpha Piscium v1.9.2"
+filename = "Alpha Piscium v1.9.2.zip"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/bvDpxd8c/versions/hjVZuOry/Alpha%20Piscium%20v1.9.2.zip"
+hash-format = "sha512"
+hash = "cd9da2e56e35f781985c36fb4a72af75992b58017aa282923e7c18bcdc4f70c35e70ef40769115ab5b36a56c417ebd9ecc7dfa3c486aeee6f882eabf4febe4a7"
+
+[update]
+[update.modrinth]
+mod-id = "bvDpxd8c"
+version = "hjVZuOry"

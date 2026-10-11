@@ -1,0 +1,13 @@
+name = "BSL_v10.1.4"
+filename = "BSL_v10.1.4.zip"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/Q1vvjJYV/versions/ZGOmKKXV/BSL_v10.1.4.zip"
+hash-format = "sha512"
+hash = "bd5da128f5a82a6e000650d64c4bb89eeb5badf51dfb9a23929b6043947cbe89c6516e4f20c09c1f7e9d911b6612c280f78afb4f91809f5da3abb2b65f5a05be"
+
+[update]
+[update.modrinth]
+mod-id = "Q1vvjJYV"
+version = "ZGOmKKXV"

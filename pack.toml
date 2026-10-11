@@ -1,0 +1,13 @@
+name = "cat with baloon 26.3"
+author = "Jorryn"
+version = "1.0.0"
+pack-format = "packwiz:1.1.0"
+
+[index]
+file = "index.toml"
+hash-format = "sha256"
+hash = "08a90cb571ad6245593464194dbfe73251b3a61cdf48d9bae2056bf0e956b823"
+
+[versions]
+fabric = "0.19.5"
+minecraft = "26.3"

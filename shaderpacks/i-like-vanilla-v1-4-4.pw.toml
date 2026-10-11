@@ -1,0 +1,13 @@
+name = "I Like Vanilla v1.4.4"
+filename = "I Like Vanilla v1.4.4.zip"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/DoODk4HD/versions/WSYjUhNi/I%20Like%20Vanilla%20v1.4.4.zip"
+hash-format = "sha512"
+hash = "6ad996d8765b96fd3359c6d519bb1d12315ff4c4e99a00a4bdd0808ab346f16601f25d55b4ece300a7ff9ee3d737fd2483f63a4ca23e764c444e37662cd4463f"
+
+[update]
+[update.modrinth]
+mod-id = "DoODk4HD"
+version = "WSYjUhNi"
