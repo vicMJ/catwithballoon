@@ -1,0 +1,13 @@
+name = "yyz"
+filename = "yyzsbackpack-0.0.11-reborn+26.3.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/zO7tsTJN/versions/9yivy8jG/yyzsbackpack-0.0.11-reborn%2B26.3.jar"
+hash-format = "sha512"
+hash = "e472ea1df09be23a7fc35ca6f0ce91c2b8aa271121596440890a4cee9ac630e7258dced721db45375147c7b28da9d6e9aa12d95abcf3a00fc1b51f5044561d05"
+
+[update]
+[update.modrinth]
+mod-id = "zO7tsTJN"
+version = "9yivy8jG"
