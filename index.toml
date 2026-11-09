@@ -271,10 +271,6 @@ hash = "d58283337fc611e1a18e9ecd4158848b73c2c7fd108623a199a26e2e24099a76"
 metafile = true
 
 [[files]]
-file = "mods/yyzsbackpack-0.0.10-reborn+26.3.jar"
-hash = "658bd9c41be7304ba25e1edaa69c2140b9a96c88567f5eb36e66142487d549d4"
-
-[[files]]
 file = "mods/zoomify.pw.toml"
 hash = "24243bf59fa8e8fd2755b3bd20b4b9ea102e6afd3c0adcf92368f0ec3224aed3"
 metafile = true

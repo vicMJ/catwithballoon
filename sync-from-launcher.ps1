@@ -52,6 +52,11 @@ if ($UpdateServerMods) {
 }
 Get-ChildItem "$repo\mods" -Filter *.pw.toml |
     Where-Object { $serverOnly.FullName -notcontains $_.FullName } | Remove-Item
+# Loose jars in the pack cause duplicate-mod crashes; mods must come from .pw.toml files.
+Get-ChildItem "$repo\mods" -Filter *.jar | ForEach-Object {
+    Write-Warning "Removing loose jar from pack: $($_.Name)"
+    Remove-Item $_.FullName
+}
 $utf8 = New-Object System.Text.UTF8Encoding($false)
 $count = 0
 Get-ChildItem $indexDir -Filter *.pw.toml | ForEach-Object {
