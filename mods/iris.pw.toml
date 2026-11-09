@@ -2,6 +2,11 @@ name = "Iris"
 filename = "iris-fabric-1.11.7+mc26.3.jar"
 side = "client"
 
+[option]
+optional = true
+default = true
+description = "Shaders. Untick if your PC struggles or you never use shaders."
+
 [download]
 url = "https://cdn.modrinth.com/data/YL57xq9U/versions/vTN4NRGW/iris-fabric-1.11.7%2Bmc26.3.jar"
 hash-format = "sha512"

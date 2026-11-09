@@ -16,6 +16,14 @@ UPDATE / ADD / REMOVE MODS
 4. Restart the server (in SSH):   sudo systemctl restart mc-s1
 Done. Friends get the update the next time they press Play.
 
+Optional mods (Iris, Voxy): friends can untick these in the update window.
+To make another mod optional, open its file in  mods\  and add under side = ...
+    [option]
+    optional = true
+    default = true
+    description = "what it does"
+then run update-pack.bat. The script keeps these blocks when it syncs.
+
 
 UPDATE SERVER-ONLY MODS (C2ME, Krypton, ServerCore, spark...)
 -------------------------------------------------------------

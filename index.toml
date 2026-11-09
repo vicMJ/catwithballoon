@@ -112,7 +112,7 @@ metafile = true
 
 [[files]]
 file = "mods/iris.pw.toml"
-hash = "926d4f91fa8904eabc506c3429a41db5bc87fd11a4eb1a24b8fcf9f85b11fc46"
+hash = "d030cfe7fa45fc79795326d78e1f492ac00e2beb7efc1cf08a712ef0fed17c3a"
 metafile = true
 
 [[files]]
@@ -242,7 +242,7 @@ metafile = true
 
 [[files]]
 file = "mods/voxy.pw.toml"
-hash = "19ae82550e2d7e5a444bb3c5c49777ecf6dfd6334e286ad499ca17235587d2ed"
+hash = "6fa8e57c339a0cee7245978aa6e63c3b52b433cffdb5938384b30d6612a4f4ec"
 metafile = true
 
 [[files]]

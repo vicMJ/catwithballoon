@@ -2,6 +2,11 @@ name = "voxy"
 filename = "voxy-0.2.20-beta.jar"
 side = "client"
 
+[option]
+optional = true
+default = true
+description = "Very far render distance (LODs). Heavy on GPU, RAM and disk; untick on weaker PCs."
+
 [download]
 url = "https://cdn.modrinth.com/data/fxxUqruK/versions/iIrM8ZKQ/voxy-0.2.20-beta.jar"
 hash-format = "sha512"

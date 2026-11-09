@@ -53,6 +53,8 @@ Drag the zip onto the Fjord Launcher window, or click **Add Instance → Import 
 
 An **Updating modpack** window downloads 44 mods and 12 shaders. The first time takes a minute or two.
 
+It first asks about two **optional mods**: **Iris** (shaders) and **Voxy** (very far render distance). Both are ticked. Untick them if your PC struggles; you can still play on the server without them.
+
 ### 6. Join the server
 
 Go to Multiplayer and join **cat with balloon [publicip]**. If you're on the Tailscale network, use the **[tailscaleip]** one instead.
@@ -118,6 +120,7 @@ Just press Play. The update check runs every launch and only downloads what chan
 
 * Change any settings, keybinds or mod options. Updates never reset them.
 * Pick a different shader in Iris.
+* Turn Iris or Voxy on or off: click **Optional mods…** in the Updating modpack window while it runs.
 * Add your own resource packs.
 * Change memory: **Edit instance → Settings → Java** (6 GB by default).
 
@@ -156,4 +159,4 @@ Pick Java 25, or let the launcher download it automatically.
 
 ---
 
-Minecraft 26.3 · Fabric 0.19.5 · Pack source: [github.com/vicMJ/catwithballoon](https://github.com/vicMJ/catwithballoon)
+Minecraft 26.3 · Fabric 0.20.1 · Pack source: [github.com/vicMJ/catwithballoon](https://github.com/vicMJ/catwithballoon)

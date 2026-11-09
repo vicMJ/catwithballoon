@@ -33,13 +33,18 @@ function Get-Section($text, $header) {
     if ($m.Success) { $m.Groups[1].Value } else { "" }
 }
 
-# --- remember the side (client/server/both) already set for each mod in the pack ---
+# --- remember the side (client/server/both) and [option] block already set for each mod ---
 $sides = @{}
+$options = @{}
 Get-ChildItem "$repo\mods" -Filter *.pw.toml -ErrorAction SilentlyContinue | ForEach-Object {
     $t = Get-Content $_.FullName -Raw
     $id = Get-Val (Get-Section $t 'update.modrinth') 'mod-id'
     if (-not $id) { $id = Get-Val (Get-Section $t 'update.curseforge') 'project-id' }
-    if ($id) { $sides[$id] = Get-Val $t 'side' }
+    if ($id) {
+        $sides[$id] = Get-Val $t 'side'
+        $opt = (Get-Section $t 'option').Trim()
+        if ($opt) { $options[$id] = $opt }
+    }
 }
 
 # --- rewrite mods/ from the launcher ---
@@ -73,9 +78,11 @@ Get-ChildItem $indexDir -Filter *.pw.toml | ForEach-Object {
         "name = `"$(Get-Val $t 'name')`"",
         "filename = `"$(Get-Val $t 'filename')`"",
         "side = `"$side`"",
-        "",
-        "[download]"
+        ""
     )
+    # Optional mods (friends can untick them in the update window) keep their [option] block.
+    if ($options[$id]) { $lines += "[option]", ($options[$id] -replace "`r`n", "`n"), "" }
+    $lines += "[download]"
     $url = Get-Val $dl 'url'
     if ($url) { $lines += "url = `"$url`"" }
     $mode = Get-Val $dl 'mode'
