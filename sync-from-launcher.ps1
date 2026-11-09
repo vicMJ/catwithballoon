@@ -2,7 +2,7 @@
 # refreshes the index, and (unless -NoPush) commits and pushes to GitHub.
 # Manage mods in the launcher as usual, then double-click update-pack.bat.
 param(
-    [string]$Instance = "$env:APPDATA\FjordLauncher\instances\cat with balloon 26.3",
+    [string]$Instance = "$env:APPDATA\FjordLauncher\instances\cat-with-balloon-26.3",
     [string]$Message = "",
     [switch]$NoPush,
     [switch]$UpdateServerMods   # also update the server-only mods to their newest versions
