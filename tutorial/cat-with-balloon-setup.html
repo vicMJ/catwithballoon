@@ -1,0 +1,212 @@
+<title>Cat with Balloon 26.3 Setup</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito+Sans:opsz,wght@6..12,400;6..12,700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: one narrow reading column; numbered steps (it is a real sequence), then two reference blocks. */
+:root {
+  --sky: #eef4fa;
+  --paper: #ffffff;
+  --ink: #1d2733;
+  --muted: #5a6878;
+  --line: #d7e1ec;
+  --balloon: #d9383e;
+  --balloon-soft: #fde8e8;
+  --grass: #2f8a4c;
+  --grass-soft: #e3f3e8;
+  --code-bg: #e8eef5;
+  --font-display: "Baloo 2", "Trebuchet MS", system-ui, sans-serif;
+  --font-body: "Nunito Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --sky: #121a23; --paper: #19232f; --ink: #e6edf5; --muted: #9aa9b9; --line: #2b3a4b;
+    --balloon: #ff6b70; --balloon-soft: #3a1f24; --grass: #5cc47d; --grass-soft: #18301f; --code-bg: #223042;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --sky: #121a23; --paper: #19232f; --ink: #e6edf5; --muted: #9aa9b9; --line: #2b3a4b;
+  --balloon: #ff6b70; --balloon-soft: #3a1f24; --grass: #5cc47d; --grass-soft: #18301f; --code-bg: #223042;
+  color-scheme: dark;
+}
+body {
+  background: var(--sky); color: var(--ink);
+  font-family: var(--font-body); font-size: 17px; line-height: 1.6;
+}
+.wrap {
+  max-width: 44rem; margin: 0 auto;
+  padding-block: 2.5rem 4rem;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: flex; flex-direction: column; gap: 2rem;
+}
+header { display: flex; gap: 1.25rem; align-items: center; }
+header svg { flex: none; width: 64px; height: 92px; }
+h1 {
+  font-family: var(--font-display); font-weight: 800; font-size: clamp(2rem, 6vw, 2.75rem);
+  line-height: 1.05; margin: 0; text-wrap: balance;
+}
+.lede { margin: .35rem 0 0; color: var(--muted); }
+h2 { font-family: var(--font-display); font-weight: 800; font-size: 1.6rem; margin: 0 0 .75rem; text-wrap: balance; }
+h3 { font-family: var(--font-display); font-weight: 600; font-size: 1.25rem; margin: 0; line-height: 1.25; }
+p { margin: 0; }
+a { color: var(--balloon); font-weight: 700; }
+a:focus-visible, .dl:focus-visible { outline: 3px solid var(--balloon); outline-offset: 3px; }
+code {
+  font-family: var(--font-mono); font-size: .85em;
+  background: var(--code-bg); padding: .1em .35em; border-radius: 4px; overflow-wrap: anywhere;
+}
+.note {
+  background: var(--balloon-soft); border-radius: 12px; padding: 1rem 1.15rem;
+  display: flex; flex-direction: column; gap: .4rem;
+}
+.note strong { color: var(--balloon); }
+ol.steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 1rem; counter-reset: s; }
+ol.steps > li {
+  counter-increment: s; background: var(--paper); border: 1px solid var(--line); border-radius: 14px;
+  padding: 1.15rem 1.25rem 1.25rem 4.1rem; position: relative; min-width: 0;
+  display: flex; flex-direction: column; gap: .5rem;
+}
+ol.steps > li::before {
+  content: counter(s); position: absolute; left: 1.15rem; top: 1rem;
+  width: 2.1rem; height: 2.1rem; border-radius: 50%;
+  background: var(--balloon); color: var(--paper);
+  font-family: var(--font-display); font-weight: 800; font-size: 1.15rem;
+  display: grid; place-items: center; line-height: 1;
+}
+ol.steps > li.optional::before { background: var(--muted); }
+.tag {
+  font-family: var(--font-body); font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--muted); border: 1px solid var(--line); border-radius: 99px; padding: .05rem .5rem; margin-left: .4rem;
+  vertical-align: .2em;
+}
+.dl {
+  align-self: flex-start; display: inline-flex; align-items: center; gap: .5rem;
+  background: var(--balloon); color: var(--paper); text-decoration: none;
+  font-family: var(--font-display); font-weight: 600; font-size: 1.1rem;
+  padding: .55rem 1.1rem; border-radius: 10px;
+}
+.dl small { font-family: var(--font-body); font-weight: 400; font-size: .8rem; opacity: .85; }
+ul.tight { margin: 0; padding-left: 1.2rem; display: flex; flex-direction: column; gap: .3rem; }
+.path { font-family: var(--font-mono); font-size: .85rem; color: var(--muted); }
+.rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1rem; }
+.rule { border-radius: 14px; padding: 1.1rem 1.2rem; display: flex; flex-direction: column; gap: .5rem; min-width: 0; }
+.rule.ok { background: var(--grass-soft); }
+.rule.no { background: var(--balloon-soft); }
+.rule.ok h3 { color: var(--grass); }
+.rule.no h3 { color: var(--balloon); }
+dl.faq { margin: 0; display: flex; flex-direction: column; gap: 1rem; }
+dl.faq dt { font-weight: 700; }
+dl.faq dd { margin: .2rem 0 0; color: var(--muted); }
+footer { color: var(--muted); font-size: .9rem; border-top: 1px solid var(--line); padding-top: 1rem; }
+@media (max-width: 30rem) {
+  ol.steps > li { padding-left: 1.15rem; padding-top: 3.6rem; }
+  header svg { width: 48px; height: 70px; }
+}
+</style>
+
+<div class="wrap">
+  <header>
+    <svg viewBox="0 0 64 92" aria-hidden="true">
+      <ellipse cx="32" cy="24" rx="20" ry="23" fill="var(--balloon)"/>
+      <ellipse cx="25" cy="16" rx="5" ry="8" fill="var(--paper)" opacity=".35"/>
+      <path d="M29 47 l3 4 l3 -4 z" fill="var(--balloon)"/>
+      <path d="M32 51 C 28 60, 36 66, 32 74" stroke="var(--muted)" stroke-width="1.5" fill="none"/>
+      <path d="M22 92 v-12 l4 -6 l3 6 h6 l3 -6 l4 6 v12 z" fill="var(--ink)"/>
+    </svg>
+    <div>
+      <h1>Cat with Balloon 26.3</h1>
+      <p class="lede">New setup for the server. Do this once, about 5 minutes. After that, mods update by themselves every time you press Play.</p>
+    </div>
+  </header>
+
+  <div class="note">
+    <p><strong>Don't update your old instance.</strong> Make a new one from the file below. Old 26.2 mods left in an old mods folder will crash the game.</p>
+  </div>
+
+  <section>
+    <h2>Set it up</h2>
+    <ol class="steps">
+      <li>
+        <h3>Download the pack file</h3>
+        <a class="dl" href="https://github.com/vicMJ/catwithballoon/raw/main/friend-instance/cat-with-balloon-26.3.zip">Download cat-with-balloon-26.3.zip <small>100 KB</small></a>
+        <p>It's tiny on purpose. The mods download when you first launch.</p>
+      </li>
+      <li>
+        <h3>Import it into Fjord Launcher</h3>
+        <p>Click <b>Add Instance</b> → <b>Import</b> → <b>Browse</b>, pick the zip, then <b>OK</b>. Dragging the zip onto the launcher window works too.</p>
+        <p>A new instance called <b>cat with balloon 26.3</b> appears.</p>
+      </li>
+      <li class="optional">
+        <h3>Bring your settings and maps along <span class="tag">optional</span></h3>
+        <p>Right-click your <b>old</b> instance → <b>Folder</b>. Do the same for the new one. Copy these from the old <span class="path">minecraft</span> folder into the new one:</p>
+        <ul class="tight">
+          <li><code>options.txt</code>: keybinds, video and sound settings</li>
+          <li><code>xaero</code> and <code>XaeroWaypoints</code>: your minimap, world map and waypoints</li>
+          <li><code>screenshots</code>, and any resource packs you added yourself</li>
+        </ul>
+        <p><b>Never copy the <code>mods</code> folder.</b></p>
+      </li>
+      <li>
+        <h3>Press Play</h3>
+        <p>An <b>Updating modpack</b> window appears and downloads 44 mods and 12 shaders. The first time takes a minute or two. Later launches only fetch what changed.</p>
+        <p>Use the same account you used before.</p>
+      </li>
+      <li>
+        <h3>Join the server</h3>
+        <p>The server is already in your Multiplayer list as <b>cat with balloon</b>. Pick the Tailscale entry if you're on Tailscale, otherwise the public one.</p>
+        <p>Once everything works you can delete the old instance.</p>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>From now on</h2>
+    <div class="rules">
+      <div class="rule ok">
+        <h3>Fine to do</h3>
+        <ul class="tight">
+          <li>Change any settings, keybinds or mod options. Updates never reset them.</li>
+          <li>Pick a different shader in Iris.</li>
+          <li>Add your own resource packs.</li>
+          <li>Change memory: Edit instance → Settings → Java (it's 6 GB by default).</li>
+        </ul>
+      </div>
+      <div class="rule no">
+        <h3>Don't do</h3>
+        <ul class="tight">
+          <li>Add, remove or update mods yourself, including the launcher's "Update" button on the Mods tab.</li>
+          <li>Drop jars into the mods folder.</li>
+          <li>Remove the pre-launch command in the instance settings. That's what keeps you updated.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>If something goes wrong</h2>
+    <dl class="faq">
+      <div>
+        <dt>The update window shows an error</dt>
+        <dd>Check your internet and press Play again. If it keeps failing, screenshot the window and send it to Jorryn.</dd>
+      </div>
+      <div>
+        <dt>"Incompatible mods" or version mismatch when joining</dt>
+        <dd>The pack was probably updated while your game was open. Close Minecraft and press Play again. The update runs at launch.</dd>
+      </div>
+      <div>
+        <dt>The game crashes on start</dt>
+        <dd>Don't delete anything. Send Jorryn the crash report (Edit instance → Minecraft Log, or the <code>crash-reports</code> folder).</dd>
+      </div>
+      <div>
+        <dt>The launcher asks which Java to use</dt>
+        <dd>Pick Java 25, or let the launcher download it automatically.</dd>
+      </div>
+    </dl>
+  </section>
+
+  <footer>Minecraft 26.3 · Fabric 0.19.5 · Pack source: <a href="https://github.com/vicMJ/catwithballoon">github.com/vicMJ/catwithballoon</a></footer>
+</div>
