@@ -1,0 +1,30 @@
+CAT WITH BALLOON - HOW TO UPDATE
+================================
+
+Fjord instances:
+  cat with balloon 26.3   -> PLAY on this one (auto-updates like everyone else)
+  cat-with-balloon-26.3   -> DEV: only for changing mods, don't play on it
+
+
+UPDATE / ADD / REMOVE MODS
+--------------------------
+1. In Fjord, open the DEV instance (cat-with-balloon-26.3) -> Mods tab.
+   Update, add or remove mods there.
+   ! Don't update Sodium or Sodium Extra until Iris has a version newer than 1.11.7.
+2. Press Play on the DEV instance once to check that it starts. Then close it.
+3. Double-click  update-pack.bat  in  E:\claude\catwithballoon
+4. Restart the server (in SSH):   sudo systemctl restart mc-s1
+Done. Friends get the update the next time they press Play.
+
+
+UPDATE SERVER-ONLY MODS (C2ME, Krypton, ServerCore, spark...)
+-------------------------------------------------------------
+1. Double-click  update-server-mods.bat
+2. Restart the server:   sudo systemctl restart mc-s1
+
+
+IF SOMETHING BREAKS
+-------------------
+- Server log:      screen -r mc-s1      (leave with Ctrl+A, then D)
+- New Minecraft version (26.4 etc.) is a bigger job: friends need a new zip.
+  Ask Claude for help with that one.
