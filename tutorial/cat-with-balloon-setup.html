@@ -4,7 +4,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito+Sans:opsz,wght@6..12,400;6..12,700&family=JetBrains+Mono:wght@500&display=swap">
 <style>
-/* Layout: one narrow reading column; numbered steps (it is a real sequence), then two reference blocks. */
+/* Layout: one narrow reading column. A two-way chooser up top, numbered steps for each route (real sequences), shared reference blocks below. */
 :root {
   --sky: #eef4fa;
   --paper: #ffffff;
@@ -15,6 +15,8 @@
   --balloon-soft: #fde8e8;
   --grass: #2f8a4c;
   --grass-soft: #e3f3e8;
+  --sky-soft: #dde9f6;
+  --sky-ink: #2a5d8f;
   --code-bg: #e8eef5;
   --font-display: "Baloo 2", "Trebuchet MS", system-ui, sans-serif;
   --font-body: "Nunito Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -23,26 +25,31 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --sky: #121a23; --paper: #19232f; --ink: #e6edf5; --muted: #9aa9b9; --line: #2b3a4b;
-    --balloon: #ff6b70; --balloon-soft: #3a1f24; --grass: #5cc47d; --grass-soft: #18301f; --code-bg: #223042;
+    --balloon: #ff6b70; --balloon-soft: #3a1f24; --grass: #5cc47d; --grass-soft: #18301f;
+    --sky-soft: #1b2b3d; --sky-ink: #8cbcef; --code-bg: #223042;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --sky: #121a23; --paper: #19232f; --ink: #e6edf5; --muted: #9aa9b9; --line: #2b3a4b;
-  --balloon: #ff6b70; --balloon-soft: #3a1f24; --grass: #5cc47d; --grass-soft: #18301f; --code-bg: #223042;
+  --balloon: #ff6b70; --balloon-soft: #3a1f24; --grass: #5cc47d; --grass-soft: #18301f;
+  --sky-soft: #1b2b3d; --sky-ink: #8cbcef; --code-bg: #223042;
   color-scheme: dark;
 }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 body {
   background: var(--sky); color: var(--ink);
   font-family: var(--font-body); font-size: 17px; line-height: 1.6;
 }
 .wrap {
-  max-width: 44rem; margin: 0 auto;
+  max-width: 46rem; margin: 0 auto;
   padding-block: 2.5rem 4rem;
   padding-left: max(16px, env(safe-area-inset-left, 0px));
   padding-right: max(16px, env(safe-area-inset-right, 0px));
-  display: flex; flex-direction: column; gap: 2rem;
+  display: flex; flex-direction: column; gap: 2.5rem;
 }
+section { display: flex; flex-direction: column; gap: 1rem; scroll-margin-top: 1rem; }
 header { display: flex; gap: 1.25rem; align-items: center; }
 header svg { flex: none; width: 64px; height: 92px; }
 h1 {
@@ -50,25 +57,42 @@ h1 {
   line-height: 1.05; margin: 0; text-wrap: balance;
 }
 .lede { margin: .35rem 0 0; color: var(--muted); }
-h2 { font-family: var(--font-display); font-weight: 800; font-size: 1.6rem; margin: 0 0 .75rem; text-wrap: balance; }
+h2 { font-family: var(--font-display); font-weight: 800; font-size: 1.7rem; margin: 0; line-height: 1.15; text-wrap: balance; }
 h3 { font-family: var(--font-display); font-weight: 600; font-size: 1.25rem; margin: 0; line-height: 1.25; }
+.sub { color: var(--muted); margin: -.5rem 0 0; }
 p { margin: 0; }
-a { color: var(--balloon); font-weight: 700; }
-a:focus-visible, .dl:focus-visible { outline: 3px solid var(--balloon); outline-offset: 3px; }
-code {
+a { color: var(--balloon); font-weight: 700; overflow-wrap: anywhere; }
+a:focus-visible, .btn:focus-visible, .choice:focus-visible { outline: 3px solid var(--balloon); outline-offset: 3px; }
+code, .mono {
   font-family: var(--font-mono); font-size: .85em;
   background: var(--code-bg); padding: .1em .35em; border-radius: 4px; overflow-wrap: anywhere;
 }
-.note {
-  background: var(--balloon-soft); border-radius: 12px; padding: 1rem 1.15rem;
-  display: flex; flex-direction: column; gap: .4rem;
+
+/* chooser */
+.choices { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1rem; }
+.choice {
+  display: flex; flex-direction: column; gap: .3rem; text-decoration: none; color: var(--ink);
+  background: var(--paper); border: 2px solid var(--line); border-radius: 16px; padding: 1.1rem 1.25rem;
+  transition: border-color .15s;
 }
-.note strong { color: var(--balloon); }
+.choice:hover { border-color: var(--balloon); }
+.choice .k { font-size: .72rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--balloon); }
+.choice strong { font-family: var(--font-display); font-size: 1.35rem; font-weight: 800; line-height: 1.2; }
+.choice span:last-child { color: var(--muted); font-weight: 400; }
+
+/* callouts */
+.callout { border-radius: 12px; padding: 1rem 1.15rem; display: flex; flex-direction: column; gap: .4rem; }
+.callout.info { background: var(--sky-soft); }
+.callout.info strong { color: var(--sky-ink); }
+.callout.warn { background: var(--balloon-soft); }
+.callout.warn strong { color: var(--balloon); }
+
+/* steps */
 ol.steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 1rem; counter-reset: s; }
 ol.steps > li {
   counter-increment: s; background: var(--paper); border: 1px solid var(--line); border-radius: 14px;
   padding: 1.15rem 1.25rem 1.25rem 4.1rem; position: relative; min-width: 0;
-  display: flex; flex-direction: column; gap: .5rem;
+  display: flex; flex-direction: column; gap: .55rem;
 }
 ol.steps > li::before {
   content: counter(s); position: absolute; left: 1.15rem; top: 1rem;
@@ -77,21 +101,42 @@ ol.steps > li::before {
   font-family: var(--font-display); font-weight: 800; font-size: 1.15rem;
   display: grid; place-items: center; line-height: 1;
 }
-ol.steps > li.optional::before { background: var(--muted); }
-.tag {
-  font-family: var(--font-body); font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
-  color: var(--muted); border: 1px solid var(--line); border-radius: 99px; padding: .05rem .5rem; margin-left: .4rem;
-  vertical-align: .2em;
-}
-.dl {
-  align-self: flex-start; display: inline-flex; align-items: center; gap: .5rem;
+.btn {
+  align-self: flex-start; display: inline-flex; align-items: baseline; gap: .5rem; flex-wrap: wrap;
   background: var(--balloon); color: var(--paper); text-decoration: none;
   font-family: var(--font-display); font-weight: 600; font-size: 1.1rem;
   padding: .55rem 1.1rem; border-radius: 10px;
 }
-.dl small { font-family: var(--font-body); font-weight: 400; font-size: .8rem; opacity: .85; }
+.btn small { font-family: var(--font-body); font-weight: 400; font-size: .8rem; opacity: .85; }
+.btn.ghost { background: transparent; color: var(--balloon); border: 2px solid var(--balloon); }
 ul.tight { margin: 0; padding-left: 1.2rem; display: flex; flex-direction: column; gap: .3rem; }
-.path { font-family: var(--font-mono); font-size: .85rem; color: var(--muted); }
+.fields { display: grid; grid-template-columns: max-content 1fr; gap: .35rem .9rem; margin: 0; }
+.fields dt { font-weight: 700; }
+.fields dd { margin: 0; min-width: 0; }
+.copyrow { display: flex; gap: .5rem; align-items: center; flex-wrap: wrap; min-width: 0; }
+.copy {
+  font: inherit; font-size: .8rem; font-weight: 700; cursor: pointer;
+  background: var(--paper); color: var(--ink); border: 1px solid var(--line); border-radius: 6px; padding: .15rem .55rem;
+}
+.copy:focus-visible { outline: 3px solid var(--balloon); outline-offset: 2px; }
+
+/* update paths */
+.paths { display: grid; grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr)); gap: 1rem; align-items: start; }
+.path {
+  background: var(--paper); border: 1px solid var(--line); border-radius: 16px; padding: 1.25rem;
+  display: flex; flex-direction: column; gap: .9rem; min-width: 0;
+}
+.path header { display: block; }
+.path .k { font-size: .72rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; }
+.path.keep .k { color: var(--grass); }
+.path.fresh .k { color: var(--sky-ink); }
+.path ol { margin: 0; padding-left: 1.3rem; display: flex; flex-direction: column; gap: .6rem; }
+.path ol li::marker { font-family: var(--font-display); font-weight: 800; color: var(--muted); }
+.copylist { margin: .3rem 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: .3rem; }
+.copylist li { display: flex; gap: .5rem; align-items: baseline; flex-wrap: wrap; }
+.copylist li span { color: var(--muted); font-size: .92rem; }
+
+/* rules + faq */
 .rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1rem; }
 .rule { border-radius: 14px; padding: 1.1rem 1.2rem; display: flex; flex-direction: column; gap: .5rem; min-width: 0; }
 .rule.ok { background: var(--grass-soft); }
@@ -101,10 +146,13 @@ ul.tight { margin: 0; padding-left: 1.2rem; display: flex; flex-direction: colum
 dl.faq { margin: 0; display: flex; flex-direction: column; gap: 1rem; }
 dl.faq dt { font-weight: 700; }
 dl.faq dd { margin: .2rem 0 0; color: var(--muted); }
-footer { color: var(--muted); font-size: .9rem; border-top: 1px solid var(--line); padding-top: 1rem; }
+hr { border: 0; border-top: 1px solid var(--line); margin: 0; }
+footer { color: var(--muted); font-size: .9rem; }
 @media (max-width: 30rem) {
   ol.steps > li { padding-left: 1.15rem; padding-top: 3.6rem; }
   header svg { width: 48px; height: 70px; }
+  .fields { grid-template-columns: 1fr; }
+  .fields dd { margin-bottom: .4rem; }
 }
 </style>
 
@@ -118,53 +166,147 @@ footer { color: var(--muted); font-size: .9rem; border-top: 1px solid var(--line
       <path d="M22 92 v-12 l4 -6 l3 6 h6 l3 -6 l4 6 v12 z" fill="var(--ink)"/>
     </svg>
     <div>
-      <h1>Cat with Balloon 26.3</h1>
-      <p class="lede">New setup for the server. Do this once, about 5 minutes. After that, mods update by themselves every time you press Play.</p>
+      <h1>Hi and welcome to Cat with Balloon!</h1>
+      <p class="lede">Now on Minecraft 26.3. Mods update themselves every time you press Play.</p>
     </div>
   </header>
 
-  <div class="note">
-    <p><strong>Don't update your old instance.</strong> Make a new one from the file below. Old 26.2 mods left in an old mods folder will crash the game.</p>
-  </div>
+  <nav class="choices" aria-label="Pick your route">
+    <a class="choice" href="#new">
+      <span class="k">First time here</span>
+      <strong>Set up from scratch</strong>
+      <span>Launcher, account and game. About 10 minutes.</span>
+    </a>
+    <a class="choice" href="#update">
+      <span class="k">Already played on 26.2</span>
+      <strong>Update to 26.3</strong>
+      <span>Swap to the new instance, keeping your settings or starting clean. About 5 minutes.</span>
+    </a>
+  </nav>
 
-  <section>
-    <h2>Set it up</h2>
+  <hr>
+
+  <!-- ============ NEW PLAYERS ============ -->
+  <section id="new">
+    <h2>First time here</h2>
+    <p class="sub">A quick guide to get you logged on for the first time.</p>
+
+    <div class="callout info">
+      <p><strong>You don't need a Mojang account.</strong> Cat with Balloon uses its own login server called Drasl, hosted next to the Minecraft server. You make an account there with just a username and password, and skins and all the normal features still work.</p>
+    </div>
+    <div class="callout warn">
+      <p><strong>You need a different launcher.</strong> The normal Minecraft launcher can't log in to Drasl. Fjord Launcher can, and it also handles all the mods for you.</p>
+    </div>
+
     <ol class="steps">
       <li>
-        <h3>Download the pack file</h3>
-        <a class="dl" href="https://github.com/vicMJ/catwithballoon/raw/main/friend-instance/cat-with-balloon-26.3.zip">Download cat-with-balloon-26.3.zip <small>100 KB</small></a>
-        <p>It's tiny on purpose. The mods download when you first launch.</p>
+        <h3>Install Fjord Launcher</h3>
+        <a class="btn" href="https://github.com/hero-persson/FjordLauncherUnlocked/releases/latest">Download Fjord Launcher <small>GitHub releases</small></a>
+        <p>On Windows, grab <span class="mono">FjordLauncher-Windows-MinGW-w64-Setup-….exe</span> and run it. The default options are fine. On Mac or Linux, pick the file for your system from the same page.</p>
       </li>
       <li>
-        <h3>Import it into Fjord Launcher</h3>
-        <p>Click <b>Add Instance</b> → <b>Import</b> → <b>Browse</b>, pick the zip, then <b>OK</b>. Dragging the zip onto the launcher window works too.</p>
-        <p>A new instance called <b>cat with balloon 26.3</b> appears.</p>
+        <h3>Make your Drasl account</h3>
+        <a class="btn ghost" href="https://homeium-v1.tailee6a47.ts.net:8443/">Open the Drasl registration page</a>
+        <p>Register with a username and password. The username is your in-game name.</p>
       </li>
-      <li class="optional">
-        <h3>Bring your settings and maps along <span class="tag">optional</span></h3>
-        <p>Right-click your <b>old</b> instance → <b>Folder</b>. Do the same for the new one. Copy these from the old <span class="path">minecraft</span> folder into the new one:</p>
-        <ul class="tight">
-          <li><code>options.txt</code>: keybinds, video and sound settings</li>
-          <li><code>xaero</code> and <code>XaeroWaypoints</code>: your minimap, world map and waypoints</li>
-          <li><code>screenshots</code>, and any resource packs you added yourself</li>
-        </ul>
-        <p><b>Never copy the <code>mods</code> folder.</b></p>
+      <li>
+        <h3>Add the account to Fjord Launcher</h3>
+        <p>Go to <b>Accounts</b> → <b>Manage Accounts</b> → <b>Add authlib-injector</b> and fill in:</p>
+        <dl class="fields">
+          <dt>Username</dt><dd>your Drasl username</dd>
+          <dt>Password</dt><dd>your Drasl password</dd>
+          <dt>URL</dt>
+          <dd class="copyrow"><code id="authurl">https://homeium-v1.tailee6a47.ts.net:8443/</code><button class="copy" type="button" data-copy="authurl">Copy</button></dd>
+        </dl>
+      </li>
+      <li>
+        <h3>Add the game</h3>
+        <a class="btn" href="https://github.com/vicMJ/catwithballoon/raw/main/friend-instance/cat-with-balloon-26.3.zip">Download cat-with-balloon-26.3.zip <small>100 KB</small></a>
+        <p>Drag the zip onto the Fjord Launcher window, or click <b>Add Instance</b> → <b>Import</b> → <b>Browse</b> and pick it. A new instance called <b>cat with balloon 26.3</b> appears.</p>
       </li>
       <li>
         <h3>Press Play</h3>
-        <p>An <b>Updating modpack</b> window appears and downloads 44 mods and 12 shaders. The first time takes a minute or two. Later launches only fetch what changed.</p>
-        <p>Use the same account you used before.</p>
+        <p>An <b>Updating modpack</b> window downloads 44 mods and 12 shaders. The first time takes a minute or two.</p>
       </li>
       <li>
         <h3>Join the server</h3>
-        <p>The server is already in your Multiplayer list as <b>cat with balloon</b>. Pick the Tailscale entry if you're on Tailscale, otherwise the public one.</p>
-        <p>Once everything works you can delete the old instance.</p>
+        <p>Go to Multiplayer and join <b>cat with balloon [publicip]</b>. If you're on the Tailscale network, use the <b>[tailscaleip]</b> one instead.</p>
+        <p class="copyrow">If the list is empty, add the server by hand: <code id="ip">cwb.ddns.net</code><button class="copy" type="button" data-copy="ip">Copy</button></p>
       </li>
     </ol>
   </section>
 
-  <section>
+  <hr>
+
+  <!-- ============ UPDATING ============ -->
+  <section id="update">
+    <h2>Updating from 26.2</h2>
+    <p class="sub">You already have Fjord Launcher and an account, so you only need the new instance. Your Drasl login and your stuff on the server stay the same.</p>
+
+    <div class="callout warn">
+      <p><strong>Don't update your old instance.</strong> Leftover 26.2 mods in an old mods folder crash the game. Always import the new one.</p>
+    </div>
+
+    <ol class="steps">
+      <li>
+        <h3>Import the new instance</h3>
+        <a class="btn" href="https://github.com/vicMJ/catwithballoon/raw/main/friend-instance/cat-with-balloon-26.3.zip">Download cat-with-balloon-26.3.zip <small>100 KB</small></a>
+        <p>Drag it onto Fjord Launcher, or <b>Add Instance</b> → <b>Import</b>. Don't launch it yet if you want to keep your settings.</p>
+      </li>
+      <li>
+        <h3>Pick a path</h3>
+        <div class="paths">
+          <div class="path keep">
+            <header>
+              <span class="k">Path A</span>
+              <h3>Keep my settings</h3>
+            </header>
+            <p>Your keybinds, video settings, mod options, minimap and waypoints come with you.</p>
+            <ol>
+              <li>Right-click your <b>old</b> instance → <b>Folder</b>. Do the same for the <b>new</b> one, so both are open.</li>
+              <li>In the old one, open the <span class="mono">minecraft</span> folder and copy these into the new instance's <span class="mono">minecraft</span> folder:
+                <ul class="copylist">
+                  <li><code>options.txt</code> <span>keybinds, video, sound</span></li>
+                  <li><code>config</code> <span>mod settings, including your shader choice</span></li>
+                  <li><code>xaero</code> <code>XaeroWaypoints</code> <span>minimap, world map, waypoints</span></li>
+                  <li><code>screenshots</code> <code>resourcepacks</code> <span>if you want them</span></li>
+                </ul>
+              </li>
+              <li>Say yes if Windows asks to replace files.</li>
+              <li><b>Never copy</b> <code>mods</code> or <code>shaderpacks</code>. The new instance gets its own.</li>
+            </ol>
+          </div>
+          <div class="path fresh">
+            <header>
+              <span class="k">Path B</span>
+              <h3>Start fresh</h3>
+            </header>
+            <p>Default settings, clean slate. Good if things felt broken or laggy before, or you just don't care.</p>
+            <ol>
+              <li>Nothing to copy. Skip straight to the next step.</li>
+              <li>Your inventory, builds and waystones live on the server, so you don't lose any of that.</li>
+              <li>Your minimap waypoints and explored world map are saved on your PC, so those start empty. Use Path A if you want to keep them.</li>
+            </ol>
+          </div>
+        </div>
+      </li>
+      <li>
+        <h3>Press Play and join</h3>
+        <p>The first launch downloads the mods (a minute or two). The server list comes with the new instance. Join <b>cat with balloon</b> as before.</p>
+      </li>
+      <li>
+        <h3>Delete the old instance</h3>
+        <p>Once everything works, right-click the old instance → <b>Delete</b>, so you don't launch it by accident.</p>
+      </li>
+    </ol>
+  </section>
+
+  <hr>
+
+  <!-- ============ SHARED ============ -->
+  <section id="after">
     <h2>From now on</h2>
+    <p class="sub">Just press Play. The update check runs every launch and only downloads what changed.</p>
     <div class="rules">
       <div class="rule ok">
         <h3>Fine to do</h3>
@@ -172,13 +314,13 @@ footer { color: var(--muted); font-size: .9rem; border-top: 1px solid var(--line
           <li>Change any settings, keybinds or mod options. Updates never reset them.</li>
           <li>Pick a different shader in Iris.</li>
           <li>Add your own resource packs.</li>
-          <li>Change memory: Edit instance → Settings → Java (it's 6 GB by default).</li>
+          <li>Change memory: Edit instance → Settings → Java (6 GB by default).</li>
         </ul>
       </div>
       <div class="rule no">
         <h3>Don't do</h3>
         <ul class="tight">
-          <li>Add, remove or update mods yourself, including the launcher's "Update" button on the Mods tab.</li>
+          <li>Add, remove or update mods yourself, including the "Update" button on the launcher's Mods tab.</li>
           <li>Drop jars into the mods folder.</li>
           <li>Remove the pre-launch command in the instance settings. That's what keeps you updated.</li>
         </ul>
@@ -186,16 +328,24 @@ footer { color: var(--muted); font-size: .9rem; border-top: 1px solid var(--line
     </div>
   </section>
 
-  <section>
+  <section id="help">
     <h2>If something goes wrong</h2>
     <dl class="faq">
+      <div>
+        <dt>Can't log in, or "Invalid session" when joining</dt>
+        <dd>Check that your account in Fjord Launcher is the authlib-injector one with the Drasl URL above, and that it's selected (top right of the launcher).</dd>
+      </div>
       <div>
         <dt>The update window shows an error</dt>
         <dd>Check your internet and press Play again. If it keeps failing, screenshot the window and send it to Jorryn.</dd>
       </div>
       <div>
         <dt>"Incompatible mods" or version mismatch when joining</dt>
-        <dd>The pack was probably updated while your game was open. Close Minecraft and press Play again. The update runs at launch.</dd>
+        <dd>The pack was probably updated while your game was open. Close Minecraft and press Play again.</dd>
+      </div>
+      <div>
+        <dt>Crash after copying settings (Path A)</dt>
+        <dd>Delete the <code>config</code> folder from the new instance and launch again. Mods recreate it with defaults; <code>options.txt</code> and your maps can stay.</dd>
       </div>
       <div>
         <dt>The game crashes on start</dt>
@@ -210,3 +360,21 @@ footer { color: var(--muted); font-size: .9rem; border-top: 1px solid var(--line
 
   <footer>Minecraft 26.3 · Fabric 0.19.5 · Pack source: <a href="https://github.com/vicMJ/catwithballoon">github.com/vicMJ/catwithballoon</a></footer>
 </div>
+
+<script>
+document.querySelectorAll('.copy').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    var el = document.getElementById(btn.dataset.copy);
+    var text = el.textContent;
+    function done() { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy'; }, 1500); }
+    function fallback() {
+      var r = document.createRange(); r.selectNodeContents(el);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      btn.textContent = 'Press Ctrl+C';
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, fallback);
+    } else { fallback(); }
+  });
+});
+</script>
