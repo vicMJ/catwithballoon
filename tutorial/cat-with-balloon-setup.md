@@ -45,9 +45,9 @@ Go to **Accounts → Manage Accounts → Add authlib-injector** and fill in:
 
 ### 4. Add the game
 
-Download: [cat-with-balloon-26.3.zip](https://github.com/vicMJ/catwithballoon/raw/main/friend-instance/cat-with-balloon-26.3.zip) (100 KB)
+Download: [cat with balloon 26.3.zip](https://github.com/vicMJ/catwithballoon/raw/main/friend-instance/cat%20with%20balloon%2026.3.zip) (100 KB)
 
-Drag the zip onto the Fjord Launcher window, or click **Add Instance → Import → Browse** and pick it. A new instance called **cat-with-balloon-26.3** appears.
+Drag the zip onto the Fjord Launcher window, or click **Add Instance → Import → Browse** and pick it. A new instance called **cat with balloon 26.3** appears.
 
 ### 5. Press Play
 
@@ -72,7 +72,7 @@ You already have Fjord Launcher and an account, so you only need the new instanc
 
 ### 1. Import the new instance
 
-Download: [cat-with-balloon-26.3.zip](https://github.com/vicMJ/catwithballoon/raw/main/friend-instance/cat-with-balloon-26.3.zip) (100 KB)
+Download: [cat with balloon 26.3.zip](https://github.com/vicMJ/catwithballoon/raw/main/friend-instance/cat%20with%20balloon%2026.3.zip) (100 KB)
 
 Drag it onto Fjord Launcher, or **Add Instance → Import**. Don't launch it yet if you want to keep your settings.
 
