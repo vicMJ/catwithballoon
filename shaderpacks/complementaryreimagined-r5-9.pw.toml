@@ -1,6 +1,6 @@
 name = "ComplementaryReimagined_r5.9"
 filename = "ComplementaryReimagined_r5.9.zip"
-side = "both"
+side = "client"
 
 [download]
 url = "https://cdn.modrinth.com/data/HVnmMxH1/versions/111gsk0f/ComplementaryReimagined_r5.9.zip"

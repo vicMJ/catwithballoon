@@ -1,6 +1,6 @@
 name = "Alpha Piscium v1.9.2"
 filename = "Alpha Piscium v1.9.2.zip"
-side = "both"
+side = "client"
 
 [download]
 url = "https://cdn.modrinth.com/data/bvDpxd8c/versions/hjVZuOry/Alpha%20Piscium%20v1.9.2.zip"

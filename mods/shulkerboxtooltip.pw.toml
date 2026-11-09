@@ -1,6 +1,6 @@
 name = "Shulker Box Tooltip"
 filename = "shulkerboxtooltip-fabric-5.4.3+26.3.jar"
-side = "both"
+side = "client"
 
 [download]
 url = "https://cdn.modrinth.com/data/2M01OLQq/versions/60krd8u8/shulkerboxtooltip-fabric-5.4.3%2B26.3.jar"

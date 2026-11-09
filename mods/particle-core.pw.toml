@@ -1,6 +1,6 @@
 name = "Particle Core"
 filename = "particle_core-0.3.3+fix1+26.2.jar"
-side = "both"
+side = "client"
 
 [download]
 url = "https://cdn.modrinth.com/data/RSeLon5O/versions/NPLw1nMG/particle_core-0.3.3%2Bfix1%2B26.2.jar"

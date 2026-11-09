@@ -1,0 +1,13 @@
+name = "vine-cork-1.0.0+26.3"
+filename = "vine-cork-1.0.0+26.3.jar"
+side = "server"
+
+[download]
+url = "https://cdn.modrinth.com/data/DRQvgEqu/versions/ccmGVLxa/vine-cork-1.0.0%2B26.3.jar"
+hash-format = "sha512"
+hash = "0439feffa06b80c364749eab8c233404b647e88dc8dfb7a6324bc8d0441f794d9e043f38695dcf473d3c1771d2e29af7d1e666ac929b241430b8a0bb7f181f0e"
+
+[update]
+[update.modrinth]
+mod-id = "DRQvgEqu"
+version = "ccmGVLxa"

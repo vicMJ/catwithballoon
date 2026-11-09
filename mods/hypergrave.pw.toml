@@ -1,0 +1,13 @@
+name = "HyperGrave v2.3.1 (MC 26.3.x) MOD"
+filename = "HyperGrave v2.3.1 (MC 26.3.x) MOD.jar"
+side = "server"
+
+[download]
+url = "https://cdn.modrinth.com/data/zwO28AXh/versions/d4xHrOgj/HyperGrave%20v2.3.1%20%28MC%2026.3.x%29%20MOD.jar"
+hash-format = "sha512"
+hash = "9ebbc31b4b7f7a17fac66ff1eab5aeb0c21bfaa166e140590b77b618cb4f41ba098216d5baf4a6531b6ce11576db94f3932626936689fadf052f374f13baeda8"
+
+[update]
+[update.modrinth]
+mod-id = "zwO28AXh"
+version = "d4xHrOgj"

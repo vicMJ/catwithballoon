@@ -1,6 +1,6 @@
 name = "BSL_v10.1.4"
 filename = "BSL_v10.1.4.zip"
-side = "both"
+side = "client"
 
 [download]
 url = "https://cdn.modrinth.com/data/Q1vvjJYV/versions/ZGOmKKXV/BSL_v10.1.4.zip"

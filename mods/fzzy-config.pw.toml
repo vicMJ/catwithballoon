@@ -1,6 +1,6 @@
 name = "Fzzy Config"
 filename = "fzzy_config-0.7.7+fix3+26.3.jar"
-side = "both"
+side = "client"
 
 [download]
 url = "https://cdn.modrinth.com/data/hYykXjDp/versions/YkOumqzV/fzzy_config-0.7.7%2Bfix3%2B26.3.jar"

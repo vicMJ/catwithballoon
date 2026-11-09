@@ -1,6 +1,6 @@
 name = "Glimmer-v1.5.2"
 filename = "Glimmer-v1.5.2.zip"
-side = "both"
+side = "client"
 
 [download]
 url = "https://cdn.modrinth.com/data/PgdT4v4a/versions/1dD3KC4h/Glimmer-v1.5.2.zip"

@@ -1,6 +1,6 @@
 name = "photon_v1.3b"
 filename = "photon_v1.3b.zip"
-side = "both"
+side = "client"
 
 [download]
 url = "https://cdn.modrinth.com/data/lLqFfGNs/versions/gUv7fBPN/photon_v1.3b.zip"

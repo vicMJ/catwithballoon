@@ -1,6 +1,6 @@
 name = "Optimized block entities"
 filename = "obe+26.3-1.2.1.jar"
-side = "both"
+side = "client"
 
 [download]
 url = "https://cdn.modrinth.com/data/AtOSAunf/versions/CCh1GsUc/obe%2B26.3-1.2.1.jar"

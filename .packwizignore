@@ -1,2 +1,4 @@
 sync-from-launcher.ps1
 update-pack.bat
+update-server-mods.bat
+start-server.sh

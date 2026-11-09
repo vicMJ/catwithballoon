@@ -4,7 +4,8 @@
 param(
     [string]$Instance = "$env:APPDATA\FjordLauncher\instances\cat with balloon 26.3",
     [string]$Message = "",
-    [switch]$NoPush
+    [switch]$NoPush,
+    [switch]$UpdateServerMods   # also update the server-only mods to their newest versions
 )
 $ErrorActionPreference = 'Stop'
 $repo = $PSScriptRoot
@@ -43,7 +44,14 @@ Get-ChildItem "$repo\mods" -Filter *.pw.toml -ErrorAction SilentlyContinue | For
 
 # --- rewrite mods/ from the launcher ---
 $null = New-Item -ItemType Directory -Force "$repo\mods"
-Get-ChildItem "$repo\mods" -Filter *.pw.toml | Remove-Item
+# Server-only mods (side = "server") aren't in the launcher, so keep them.
+$serverOnly = Get-ChildItem "$repo\mods" -Filter *.pw.toml |
+    Where-Object { (Get-Val (Get-Content $_.FullName -Raw) 'side') -eq 'server' }
+if ($UpdateServerMods) {
+    foreach ($f in $serverOnly) { & $packwiz update -y $f.BaseName.Replace('.pw', '') }
+}
+Get-ChildItem "$repo\mods" -Filter *.pw.toml |
+    Where-Object { $serverOnly.FullName -notcontains $_.FullName } | Remove-Item
 $utf8 = New-Object System.Text.UTF8Encoding($false)
 $count = 0
 Get-ChildItem $indexDir -Filter *.pw.toml | ForEach-Object {

@@ -1,6 +1,6 @@
 name = "Mellow Shader v3.4"
 filename = "Mellow Shader v3.4.zip"
-side = "both"
+side = "client"
 
 [download]
 url = "https://cdn.modrinth.com/data/BUxf36AP/versions/fORiOdHS/Mellow%20Shader%20v3.4.zip"

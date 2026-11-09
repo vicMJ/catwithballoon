@@ -1,0 +1,13 @@
+name = "fasterladderclimbing-fabric-26.3-1.1.0-26.3"
+filename = "fasterladderclimbing-fabric-26.3-1.1.0-26.3.jar"
+side = "server"
+
+[download]
+url = "https://cdn.modrinth.com/data/jAamHm5q/versions/JDRqQj7q/fasterladderclimbing-fabric-26.3-1.1.0-26.3.jar"
+hash-format = "sha512"
+hash = "4ccb2aab70a0b5e5caabd8ccaaa1aa1ba0df7624f005b45af3b21bc376bd58eb3dcc4d37334f1d9248b48d8ac5c19d120468117e65a4573faf7d323ab9b21f3e"
+
+[update]
+[update.modrinth]
+mod-id = "jAamHm5q"
+version = "JDRqQj7q"
